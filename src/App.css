@@ -1,4 +1,34 @@
+:root {
+  --map-height: calc(100vh * 9/10);
+  --map-width: calc(100vw * 9/10);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.side-bar-box {
+ display: none;
+}
+.map-box {
+  height: 100%;
+  width: 100%;
+  border-bottom: solid black 1px;
+}
 #map {
-  height: 100vh;
+  
+  width: 100%;
+  height: var(--map-height);
+}
+.bottom-filter-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: calc(100vh - var(--map-height)) ;
   width: 100vw;
+}
+
+.filter-icons {
+  font-size: 2em;
 }
