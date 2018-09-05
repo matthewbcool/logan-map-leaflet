@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LoganMap from './Components/LoganMap';
 import BottomNav from './Components/BottomNav';
-
+import Sidebar from './Components/SideBar';
 
 class App extends Component {
   state = {
@@ -26,6 +26,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Sidebar />
       <LoganMap markerData={this.state.markerData} />
       <BottomNav />
       </div>
