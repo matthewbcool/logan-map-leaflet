@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .side-bar-box {
  display: none;
 }
@@ -15,10 +16,10 @@
   border-bottom: solid black 1px;
 }
 #map {
-  
   width: 100%;
   height: var(--map-height);
 }
+
 .bottom-filter-box {
   display: flex;
   flex-direction: row;
@@ -31,4 +32,27 @@
 
 .filter-icons {
   font-size: 2em;
+}
+
+@media ( min-width: 570px ) {
+  .app {
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  .side-bar-box {
+    display: block;
+    height: var(--map-height);
+    width: 15vw;
+    border-bottom: solid black 1px;
+    border-right: solid black 1px;
+    margin-left: 5px;
+  }
+  #map {
+    width: var(--map-width)
+  }
+
 }

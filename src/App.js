@@ -25,9 +25,11 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
+      <div className="app">
+      <div className="wrapper">
       <Sidebar />
       <LoganMap markerData={this.state.markerData} />
+      </div>
       <BottomNav />
       </div>
     );
