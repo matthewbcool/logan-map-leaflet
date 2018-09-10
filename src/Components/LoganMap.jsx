@@ -15,11 +15,13 @@ class LoganMap extends React.Component {
         }),
       ]
     });
-    this.marker = L.marker([41.932614, -87.712855]).addTo(this.map);
+    //iterate through state and add markers here -- maybe
+    const markerList = this.props.markerData.map(marker => marker.marker);
+    markerList.forEach(element => this.marker = L.marker(element).addTo(this.map))
   }
   
   render() {
-    return <div id="map">{console.log(this.props.markerData.map(marker => marker.placeName))}</div>
+    return <div id="map">{}</div>
   }
 }
 export default LoganMap;

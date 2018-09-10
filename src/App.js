@@ -19,7 +19,36 @@ class App extends Component {
       id: 1,
       phone: "(773) 276-7110",
       group: "restaurant"
-    }]
+    },
+    {
+      placeName: "Archery Range",
+      marker: [41.923910,-87.698870],
+      id: 2,
+      phone: "(773) 276-7110",
+      group: "lifestyle"
+    },
+    {
+      placeName: "Emporium",
+      marker: [41.924250,-87.699230],
+      id: 3,
+      phone: "(773) 276-7110",
+      group: "bar"
+    },
+    {
+      placeName: "Illinois Centennial Monument",
+      marker: [41.922770,-87.716930],
+      id: 4,
+      phone: "(773) 276-7110",
+      group: "notable"
+    },
+    {
+      placeName: "Uncharted Books",
+      marker: [41.929240,-87.708170],
+      id: 5,
+      phone: "(773) 276-7110",
+      group: "store"
+    },
+    ]
 
   }
   
