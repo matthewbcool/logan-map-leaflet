@@ -16,8 +16,11 @@ class LoganMap extends React.Component {
       ]
     });
     //iterate through state and add markers here -- maybe
-    const markerList = this.props.markerData.map(marker => marker.marker);
-    markerList.forEach(element => this.marker = L.marker(element).addTo(this.map))
+    const markerData = this.props.markerData;
+    markerData.forEach(element => {
+      this.marker = L.marker(element.marker).addTo(this.map).bindPopup(element.placeName)
+    }
+    )
   }
   
   render() {

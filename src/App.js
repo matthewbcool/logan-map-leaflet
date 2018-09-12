@@ -22,7 +22,7 @@ class App extends Component {
     },
     {
       placeName: "Archery Range",
-      marker: [41.923910,-87.698870],
+      marker: [41.922770,-87.716930],
       id: 2,
       phone: "(773) 276-7110",
       group: "lifestyle"
@@ -36,7 +36,7 @@ class App extends Component {
     },
     {
       placeName: "Illinois Centennial Monument",
-      marker: [41.922770,-87.716930],
+      marker: [41.9284,-87.7073],
       id: 4,
       phone: "(773) 276-7110",
       group: "notable"
