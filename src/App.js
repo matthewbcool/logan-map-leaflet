@@ -53,6 +53,7 @@ class App extends Component {
 
   }
 
+  //TODO: FIX SO THIS FUNCTION RUNS ON FIRST CLICK...
   
 filterMarkerData = (groupName) => {
     if(groupName !== 'undefined') {
