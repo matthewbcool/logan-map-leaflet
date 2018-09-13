@@ -51,7 +51,8 @@ class App extends Component {
     ]
 
   }
-  
+  //bottom nav has to change the markerData so that the map will update with
+  // the correct filtered list and plot those markers...
   render() {
     return (
       <div className="app">
