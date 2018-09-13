@@ -48,19 +48,30 @@ class App extends Component {
       phone: "(773) 276-7110",
       group: "store"
     },
-    ]
+    ],
+    filteredMarkerData: ''
 
   }
-  //bottom nav has to change the markerData so that the map will update with
-  // the correct filtered list and plot those markers...
+
+  
+filterMarkerData = (groupName) => {
+    if(groupName !== 'undefined') {
+    let filtered = this.state.markerData.filter(element => groupName === element.group)
+    this.setState( {filteredMarkerData: filtered} )
+    console.log(this.state)
+    
+    }
+  }
+
+
   render() {
     return (
       <div className="app">
       <div className="wrapper">
       <Sidebar />
-      <LoganMap markerData={this.state.markerData} />
+      <LoganMap markerData={this.state.markerData} filteredMarkerData={this.state.filteredMarkerData} />
       </div>
-      <BottomNav />
+      <BottomNav filterMarkerData={this.filterMarkerData} />
       </div>
     );
   }

@@ -15,12 +15,15 @@ class LoganMap extends React.Component {
         }),
       ]
     });
-    //iterate through state and add markers here -- maybe
-    const markerData = this.props.markerData;
+    let markerData = this.props.markerData;
     markerData.forEach(element => {
       this.marker = L.marker(element.marker).addTo(this.map).bindPopup(element.placeName)
     }
     )
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.filteredMarketData)
   }
   
   render() {
