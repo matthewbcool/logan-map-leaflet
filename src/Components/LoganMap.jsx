@@ -15,6 +15,7 @@ class LoganMap extends React.Component {
         }),
       ]
     });
+    //TO DO: use layerGroup class in leaflet to add this as the default layer...
     let markerData = this.props.markerData;
     markerData.forEach(element => {
       this.marker = L.marker(element.marker).addTo(this.map).bindPopup(element.placeName)
@@ -23,7 +24,7 @@ class LoganMap extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.filteredMarketData)
+    this.marker = L.marker(this.props.filteredMarkerData[0].marker).addTo(this.map).bindPopup(this.props.filteredMarkerData[0].placeName)
   }
   
   render() {

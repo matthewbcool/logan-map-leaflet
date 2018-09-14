@@ -52,16 +52,10 @@ class App extends Component {
     filteredMarkerData: ''
 
   }
-
-  //TODO: FIX SO THIS FUNCTION RUNS ON FIRST CLICK...
   
 filterMarkerData = (groupName) => {
-    if(groupName !== 'undefined') {
-    let filtered = this.state.markerData.filter(element => groupName === element.group)
+    let filtered = this.state.markerData.filter(element => groupName === element.group);
     this.setState( {filteredMarkerData: filtered} )
-    console.log(this.state)
-    
-    }
   }
 
 
