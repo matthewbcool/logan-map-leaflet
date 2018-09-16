@@ -11,10 +11,10 @@ class BottomNav extends React.Component {
         return (
         <div className= 'bottom-filter-box'>
         <FaBullseye className="filter-icons" onClick={()=> this.props.filterMarkerData('notable')} />
-        <IoIosRestaurant className="filter-icons" />
-        <FaBeer className="filter-icons" />
-        <FiShoppingBag className="filter-icons" />
-        <MdDirectionsRun className="filter-icons" />
+        <IoIosRestaurant className="filter-icons" onClick={()=> this.props.filterMarkerData('restaurant')}/>
+        <FaBeer className="filter-icons" onClick={()=> this.props.filterMarkerData('bar')}/>
+        <FiShoppingBag className="filter-icons" onClick={()=> this.props.filterMarkerData('store')} />
+        <MdDirectionsRun className="filter-icons" onClick={()=> this.props.filterMarkerData('lifestyle')} />
         </div>
         )
     }

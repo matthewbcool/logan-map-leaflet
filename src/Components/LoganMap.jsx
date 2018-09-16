@@ -24,7 +24,7 @@ class LoganMap extends React.Component {
   }
 
   componentDidUpdate() {
-    this.marker = L.marker(this.props.filteredMarkerData[0].marker).addTo(this.map).bindPopup(this.props.filteredMarkerData[0].placeName)
+   this.props.filteredMarkerData.forEach(element => console.log(element))
   }
   
   render() {
