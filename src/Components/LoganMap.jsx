@@ -51,7 +51,10 @@ class LoganMap extends React.Component {
     let layerGroup = L.layerGroup().addTo(this.map)
     let filteredMarkerData = this.props.filteredMarkerData
     filteredMarkerData.forEach(element => {
-        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
+        let currentMarker = L.marker(element.marker,{icon: L.icon({
+          iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
+          className: 'blinking'
+        })}).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
         defaultMarkerArray.push(currentMarker)
         })   
    //layerGroup.removeLayer(layerGroup.markerData)
