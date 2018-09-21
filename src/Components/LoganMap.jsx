@@ -2,7 +2,6 @@ import React from 'react';
 import L from 'leaflet';
 
 
-
 class LoganMap extends React.Component {
   componentDidMount() {
     let markerData = this.props.markerData;
@@ -26,7 +25,7 @@ class LoganMap extends React.Component {
     let layerGroup = L.layerGroup().addTo(this.map)
     
     markerData.forEach(element => {
-        let currentMarker = L.marker(element.marker).bindPopup(element.placeName).addTo(layerGroup)
+        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
         defaultMarkerArray.push(currentMarker)
         })   
    
@@ -52,7 +51,7 @@ class LoganMap extends React.Component {
     let layerGroup = L.layerGroup().addTo(this.map)
     let filteredMarkerData = this.props.filteredMarkerData
     filteredMarkerData.forEach(element => {
-        let currentMarker = L.marker(element.marker).bindPopup(element.placeName).addTo(layerGroup)
+        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
         defaultMarkerArray.push(currentMarker)
         })   
    //layerGroup.removeLayer(layerGroup.markerData)
