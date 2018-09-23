@@ -33,9 +33,11 @@
 .filter-icons {
   font-size: 2em;
 }
+
 @keyframes fade { 
   from { opacity: 0.7; } 
 }
+
 .blinking {
   animation: fade 0.4s infinite alternate;
 }

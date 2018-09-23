@@ -5,7 +5,7 @@ import L from 'leaflet';
 class LoganMap extends React.Component {
   componentDidMount() {
     let markerData = this.props.markerData;
-    
+    console.log((this.props.getFlickrPics)())
     
     // create map
     this.map = L.map('map', {
@@ -59,7 +59,7 @@ class LoganMap extends React.Component {
         })   
    //layerGroup.removeLayer(layerGroup.markerData)
    //this.props.filteredMarkerData.forEach(element => console.log(element))
-   
+   // 910c86cfceb261a7928b1081a20ada65  Secret:c01b4c6e0ba0593b
   }
   
   render() {
