@@ -7,7 +7,7 @@ class LoganMap extends React.Component {
     let markerData = this.props.markerData;
     console.log((this.props.getFlickrPics)())
     
-    // create map
+    // create initial map
     this.map = L.map('map', {
       center: [41.9308, -87.7099],
       zoom: 15,
@@ -15,7 +15,6 @@ class LoganMap extends React.Component {
   
       ]
     });
-    //TO DO: use layerGroup class in leaflet to add this as the default layer...
     const defaultLayer = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     })
@@ -25,15 +24,19 @@ class LoganMap extends React.Component {
     let layerGroup = L.layerGroup().addTo(this.map)
     
     markerData.forEach(element => {
-        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
+        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
+          //make call for flickr pic and create element in the sidebar
+          console.log('you just clicked ' + element.placeName)
+        })
         defaultMarkerArray.push(currentMarker)
         })   
    
   }
   
   componentDidUpdate() {
+//removes exsisting map for an update
     this.map.remove()
- // redraw map
+// redraw map
     this.map = L.map('map', {
       center: [41.9308, -87.7099],
       zoom: 15,
@@ -41,7 +44,6 @@ class LoganMap extends React.Component {
 
       ]
     });
-    //TO DO: use layerGroup class in leaflet to add this as the default layer...
     const defaultLayer = new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     })
@@ -49,12 +51,16 @@ class LoganMap extends React.Component {
 
     let defaultMarkerArray = [];
     let layerGroup = L.layerGroup().addTo(this.map)
+
     let filteredMarkerData = this.props.filteredMarkerData
     filteredMarkerData.forEach(element => {
         let currentMarker = L.marker(element.marker,{icon: L.icon({
-          iconUrl: 'https://unpkg.com/leaflet@1.0.3/dist/images/marker-icon.png',
+          iconUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-icon.png',
           className: 'blinking'
-        })}).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup)
+        })}).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
+          //make call for flickr pic and create element in the sidebar
+          console.log('you just clicked ' + element.placeName)
+        })
         defaultMarkerArray.push(currentMarker)
         })   
    //layerGroup.removeLayer(layerGroup.markerData)
