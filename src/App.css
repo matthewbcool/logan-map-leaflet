@@ -10,6 +10,7 @@
 .side-bar-box {
  display: none;
 }
+
 .map-box {
   height: 100%;
   width: 100%;
@@ -58,6 +59,12 @@
     border-bottom: solid black 1px;
     border-right: solid black 1px;
     margin-left: 5px;
+  }
+  .side-bar-picture-box {
+    height: 50px;
+    width: 50px;
+    border: solid black 4px;
+    background-color: red;
   }
   #map {
     width: var(--map-width)

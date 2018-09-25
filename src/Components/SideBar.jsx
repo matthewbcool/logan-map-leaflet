@@ -1,12 +1,15 @@
-import React from 'react'
-import '../App.css'
+import React from 'react';
+import '../App.css';
+import SideBarPicture from '../Components/SideBarPicture';
 
-const SideBar = () => {
-    return (
+class SideBar extends React.Component {
+    render() {
+        return (
         <div className= 'side-bar-box'>
-        
+         <SideBarPicture></SideBarPicture>
         </div>
     )
+ }
 }
 
 export default SideBar
