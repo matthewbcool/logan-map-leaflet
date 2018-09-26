@@ -6,7 +6,7 @@ import '../App.css';
 class LoganMap extends React.Component {
   componentDidMount() {
     let markerData = this.props.markerData;
-    
+   
     // create initial map
     this.map = L.map('map', {
       center: [41.9308, -87.7099],
@@ -24,9 +24,11 @@ class LoganMap extends React.Component {
     let layerGroup = L.layerGroup().addTo(this.map)
     
     markerData.forEach(element => {
+        let flickrFunction = this.props.getFlickrPics
         let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
           //make call for flickr pic and create element in the sidebar
           console.log('you just clicked ' + element.placeName)
+          flickrFunction(element.placeName)
           
         })
         defaultMarkerArray.push(currentMarker)

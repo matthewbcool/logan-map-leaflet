@@ -58,12 +58,22 @@ filterMarkerData = (groupName) => {
     let filtered = this.state.markerData.filter(element => groupName === element.group);
     this.setState( {filteredMarkerData: filtered} )
   }
-getFlickrPics = () => {
-  const url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7514c4a371e28be984ab55f4592bf437&text=Illinois+Centennial+Monument&format=json&nojsoncallback=1&auth_token=72157701731847135-a8ba8106f7e75f11&api_sig=1c79e78925dde0d5b23331a4459ab960'
+
+parseLocation(location) {
+return location.replace(/\s/g, '+');
+}  
+
+getFlickrPics = (location) => {
+  let parsedLocation = this.parseLocation(location)
+  console.log(parsedLocation)
+  const url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=${parsedLocation}&format=json&nojsoncallback=1&auth_token=72157701731847135-c01b4c6e0ba0593b&api_sig=1c79e78925dde0d5b23331a4459ab960`
   fetch(url, {
 	method: 'get'
 }).then(function(response) {
-	console.log(response.json())
+  let responseValue = response.json()
+	responseValue.then(function(value) {
+    console.log(value.photos.photo[0])
+  })
 }).catch(function(err) {
 	console.log(err)
 });
