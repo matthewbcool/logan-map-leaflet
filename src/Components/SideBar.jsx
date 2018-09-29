@@ -7,6 +7,10 @@ class SideBar extends React.Component {
         return (
         <div className= 'side-bar-box'>
          <SideBarPicture></SideBarPicture>
+         <SideBarPicture></SideBarPicture>
+         <SideBarPicture></SideBarPicture>
+         <SideBarPicture></SideBarPicture>
+         <SideBarPicture></SideBarPicture>
         </div>
     )
  }

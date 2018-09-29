@@ -5,8 +5,6 @@ import '../App.css';
 
 class LoganMap extends React.Component {
   componentDidMount() {
-    let markerData = this.props.markerData;
-   
     // create initial map
     this.map = L.map('map', {
       center: [41.9308, -87.7099],
@@ -19,21 +17,6 @@ class LoganMap extends React.Component {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     })
     this.map.addLayer(defaultLayer)
-    
-    let defaultMarkerArray = [];
-    let layerGroup = L.layerGroup().addTo(this.map)
-    
-    markerData.forEach(element => {
-        let flickrFunction = this.props.getFlickrPics
-        let currentMarker = L.marker(element.marker).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
-          //make call for flickr pic and create element in the sidebar
-          console.log('you just clicked ' + element.placeName)
-          flickrFunction(element.placeName)
-          
-        })
-        defaultMarkerArray.push(currentMarker)
-        })   
-   
   }
   
   componentDidUpdate() {
@@ -57,10 +40,10 @@ class LoganMap extends React.Component {
 
     let filteredMarkerData = this.props.filteredMarkerData
     filteredMarkerData.forEach(element => {
-        let currentMarker = L.marker(element.marker,{icon: L.icon({
+        let currentMarker = L.marker(element.marker/*,{icon: L.icon({
           iconUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-icon.png',
           className: 'blinking'
-        })}).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
+        })}*/).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
           //make call for flickr pic and create element in the sidebar
           console.log('you just clicked ' + element.placeName)
         })

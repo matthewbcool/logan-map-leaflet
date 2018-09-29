@@ -58,7 +58,15 @@
     width: 15vw;
     border-bottom: solid black 1px;
     border-right: solid black 1px;
-    margin-left: 5px;
+    padding-left: 5px;
+    overflow-y: auto;
+  }
+
+  .side-bar-box::-webkit-scrollbar {
+    overflow: hidden;
+    width: 0px;
+    padding:0px;
+    margin:0px;
   }
   .side-bar-picture-box {
     height: 200px;
