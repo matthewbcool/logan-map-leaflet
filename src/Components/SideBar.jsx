@@ -6,7 +6,7 @@ class SideBar extends React.Component {
     render() {
         return (
         <div className= 'side-bar-box'>
-         <SideBarPicture currentPicture = {this.props.currentPicture}></SideBarPicture>
+         <SideBarPicture picturesArray = {this.props.picturesArray}></SideBarPicture>
         </div>
     )
  }

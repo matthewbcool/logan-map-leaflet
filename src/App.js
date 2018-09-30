@@ -92,7 +92,7 @@ constructor(){
       phone: "(773) 276-7110",
       group: "store"
     },],
-    currentPicture: "",
+    picturesArray: [],
     sideBarBoxCount: 0,
 
   }
@@ -101,25 +101,31 @@ constructor(){
 
 componentDidMount() {
   let markerData = this.state.filteredMarkerData
+  let picturesArray= [];
   for(let name of markerData) {
   //need to parse for url
+  
   let tag = name.placeName.replace(/\s/g, '+')
   let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=${tag}&format=json&nojsoncallback=1`
+  //API call to get list of pictures from markerdata
   fetch(url).then(function(response) {
   console.log('Fetching... you made a call!')  
   return response.json()
   })
 	.then(function(value) {
-    let pic = value.photos.photo[0]
-    if(pic === "undefined") {
+    if(value.stat === "fail" || value === null) {
       console.log(value + ' produces undefined')
+      let picture =  <img alt={"not found"} src={'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi54vy7-OLdAhWn44MKHSPEBikQjRx6BAgBEAU&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fpetr-sejba%2F34372941942&psig=AOvVaw0TslI_6HL4DCNAjpSL2Htv&ust=1538404212716578'} className={'flickr-photo'} ></img>
+      picturesArray.push(picture)
+      this.setState( {picturesArray: picturesArray} )
     } else {
+      let pic = value.photos.photo[0]
       let srcPath = 'https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '.jpg'
       let picture =  <img alt={pic.title} src={srcPath} className={'flickr-photo'} ></img>
-      this.setState( {currentPicture: picture} )
+      picturesArray.push(picture)
+      this.setState( {picturesArray: picturesArray} )
     }
   }.bind(this))
-
   }  
 }
   
@@ -140,7 +146,7 @@ getFlickrPics = (location) => {
     return (
       <div className="app">
       <div className="wrapper">
-      <Sidebar currentPicture = {this.state.currentPicture} />
+      <Sidebar picturesArray = {this.state.picturesArray} />
       <LoganMap filteredMarkerData={this.state.filteredMarkerData} getFlickrPics={this.getFlickrPics} />
       </div>
       <BottomNav filterMarkerData={this.filterMarkerData} />
