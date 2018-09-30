@@ -106,24 +106,25 @@ componentDidMount() {
   //need to parse for url
   
   let tag = name.placeName.replace(/\s/g, '+')
-  let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=${tag}&format=json&nojsoncallback=1`
+  let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=chicago+${tag}&format=json&nojsoncallback=1`
   //API call to get list of pictures from markerdata
   fetch(url).then(function(response) {
   console.log('Fetching... you made a call!')  
   return response.json()
   })
 	.then(function(value) {
-    if(value.stat === "fail" || value === null) {
+    if(value.stat === "fail" || value.photos.photo[0] === undefined) {
       console.log(value + ' produces undefined')
-      let picture =  <img alt={"not found"} src={'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi54vy7-OLdAhWn44MKHSPEBikQjRx6BAgBEAU&url=https%3A%2F%2Fwww.flickr.com%2Fphotos%2Fpetr-sejba%2F34372941942&psig=AOvVaw0TslI_6HL4DCNAjpSL2Htv&ust=1538404212716578'} className={'flickr-photo'} ></img>
+      let picture =  <img id={name.id} alt={"not found"} src={'https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png'} className={'flickr-photo'} ></img>
       picturesArray.push(picture)
       this.setState( {picturesArray: picturesArray} )
     } else {
       let pic = value.photos.photo[0]
       let srcPath = 'https://farm' + pic.farm + '.staticflickr.com/' + pic.server + '/' + pic.id + '_' + pic.secret + '.jpg'
-      let picture =  <img alt={pic.title} src={srcPath} className={'flickr-photo'} ></img>
+      let picture =  <img id={name.id} alt={pic.title} src={srcPath} className={'flickr-photo'} ></img>
       picturesArray.push(picture)
       this.setState( {picturesArray: picturesArray} )
+      console.log(this.state.picturesArray)
     }
   }.bind(this))
   }  
