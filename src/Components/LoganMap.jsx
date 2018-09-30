@@ -19,6 +19,7 @@ class LoganMap extends React.Component {
     this.map.addLayer(defaultLayer)
   }
   
+
   componentDidUpdate() {
 //removes exsisting map for an update
     this.map.remove()
@@ -34,18 +35,18 @@ class LoganMap extends React.Component {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     })
     this.map.addLayer(defaultLayer)
-
+ 
     let defaultMarkerArray = [];
-    let layerGroup = L.layerGroup().addTo(this.map)
 
+    let layerGroup = L.layerGroup().addTo(this.map)
     let filteredMarkerData = this.props.filteredMarkerData
     filteredMarkerData.forEach(element => {
         let currentMarker = L.marker(element.marker/*,{icon: L.icon({
           iconUrl: 'https://unpkg.com/leaflet@1.3.4/dist/images/marker-icon.png',
           className: 'blinking'
         })}*/).bindPopup(element.placeName + "<br>Phone Number: " + element.phone + " </br>").addTo(layerGroup).on("click", function() {
-          //make call for flickr pic and create element in the sidebar
-          console.log('you just clicked ' + element.placeName)
+         
+      
         })
         defaultMarkerArray.push(currentMarker)
         })   

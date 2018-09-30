@@ -16,7 +16,7 @@ constructor(){
     group: "restaurant"
   },
   {
-    placeName: "longmen",
+    placeName: "Longmen and Eagle",
     marker: [41.930058,-87.707043],
     id: 1,
     phone: "(773) 276-7110",
@@ -50,7 +50,7 @@ constructor(){
     phone: "(773) 276-7110",
     group: "store"
   },],
-    filteredMarkerData: [{
+  filteredMarkerData: [{
       placeName: "Dantes Pizza",
       marker: [41.932614, -87.712855],
       id: 0,
@@ -93,9 +93,10 @@ constructor(){
       group: "store"
     },],
     picturesArray: [],
-    sideBarBoxCount: 0,
-
+    createSideBarBox: false,
   }
+
+ this.sideBarBoxCreated = this.sideBarBoxCreated.bind(this) 
 }
 
 
@@ -106,16 +107,16 @@ componentDidMount() {
   //need to parse for url
   
   let tag = name.placeName.replace(/\s/g, '+')
-  let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=chicago+${tag}&format=json&nojsoncallback=1`
+  let url = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=910c86cfceb261a7928b1081a20ada65&text=${tag}&lat=41.924250&lon=-87.699230&radius=20&format=json&nojsoncallback=1`
   //API call to get list of pictures from markerdata
-  fetch(url).then(function(response) {
-  console.log('Fetching... you made a call!')  
+  fetch(url).then(function(response) { 
   return response.json()
   })
 	.then(function(value) {
+    //Check to see if there are pictures and push them to the array. assigning an id that matches the id in markerdata...
     if(value.stat === "fail" || value.photos.photo[0] === undefined) {
       console.log(value + ' produces undefined')
-      let picture =  <img id={name.id} alt={"not found"} src={'https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png'} className={'flickr-photo'} ></img>
+      let picture =  <img id={name.id} alt={"not found"} src={'http://media.gettyimages.com/vectors/no-sign-icon-vector-transparent-vector-id674612468?s=170x170'} className={'flickr-photo'} ></img>
       picturesArray.push(picture)
       this.setState( {picturesArray: picturesArray} )
     } else {
@@ -124,7 +125,6 @@ componentDidMount() {
       let picture =  <img id={name.id} alt={pic.title} src={srcPath} className={'flickr-photo'} ></img>
       picturesArray.push(picture)
       this.setState( {picturesArray: picturesArray} )
-      console.log(this.state.picturesArray)
     }
   }.bind(this))
   }  
@@ -136,19 +136,19 @@ filterMarkerData = (groupName) => {
     this.setState( {filteredMarkerData: filtered} )
   }
 
-
-
-getFlickrPics = (location) => {
-  let parsedLocation = this.parseLocation(location)
-  console.log(parsedLocation)
+sideBarBoxCreated = () => {
+  this.setState( {createSideBarBox: false} )
 }
+
+
+
 
   render() {
     return (
       <div className="app">
       <div className="wrapper">
-      <Sidebar picturesArray = {this.state.picturesArray} />
-      <LoganMap filteredMarkerData={this.state.filteredMarkerData} getFlickrPics={this.getFlickrPics} />
+      <Sidebar picturesArray = {this.state.picturesArray} sideBarBoxCreated = {this.sideBarBoxCreated} />
+      <LoganMap filteredMarkerData={this.state.filteredMarkerData} getFlickrPics={this.getFlickrPics} makeABox={this.sideBarBoxCreated} />
       </div>
       <BottomNav filterMarkerData={this.filterMarkerData} />
       </div>
